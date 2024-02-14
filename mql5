@@ -1,0 +1,67 @@
+mql5
+// Slippage Analyzed
+// Developer: Forex Robot Easy Team
+// Website: forexroboteasy.com
+
+// Define input parameters
+input double takeProfit = 50; // Take profit in pips
+input double stopLoss = 30; // Stop loss in pips
+input int period = 100; // Analysis period in bars
+
+// Define global variables
+double slippageTotal = 0; // Total slippage
+double slippageCount = 0; // Number of trades with slippage
+
+// Define trade structure
+struct Trade {
+   double openPrice;
+   double closePrice;
+   double slippage;
+};
+
+// Define array to store trade orders
+Trade trades[];
+int tradesCount = 0; // Number of trade orders
+
+// Function to retrieve trade orders from the trading platform
+void RetrieveTradeOrders() {
+   // Retrieve trade orders and populate trades array
+   // ...
+}
+
+// Function to calculate slippage for each trade order
+void CalculateSlippage() {
+   // Loop through each trade order
+   for (int i = 0; i < tradesCount; i++) {
+      // Calculate slippage
+      trades[i].slippage = trades[i].openPrice - trades[i].closePrice;
+
+      // Update total slippage and count
+      slippageTotal += trades[i].slippage;
+      slippageCount++;
+   }
+}
+
+// Function to generate slippage analysis report for a specified period
+void GenerateSlippageReport() {
+   double averageSlippage = slippageTotal / slippageCount;
+
+   // Print slippage analysis report
+   Print('Slippage Analysis Report');
+   Print('=======================');
+   Print('Total Slippage: ', slippageTotal);
+   Print('Number of Trades with Slippage: ', slippageCount);
+   Print('Average Slippage: ', averageSlippage);
+}
+
+// Main function
+void OnStart() {
+   // Retrieve trade orders
+   RetrieveTradeOrders();
+
+   // Calculate slippage
+   CalculateSlippage();
+
+   // Generate slippage analysis report
+   GenerateSlippageReport();
+}
